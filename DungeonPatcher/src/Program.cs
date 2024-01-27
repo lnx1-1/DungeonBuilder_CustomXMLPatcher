@@ -46,19 +46,20 @@ class Program {
 			return;
 		}
 
-		const string exampleXmlPath =
-			@"B:\Users\Linus\git\DungeonBuilder_CustomXMLPatcher\DungeonPatcher\DungeonPatcher\res\Custom\Art Definitions\decorate\hobbyte\decor large.xml";
-
-		const string ArtistInfoPath =
-			@"B:\Users\Linus\git\DungeonBuilder_CustomXMLPatcher\DungeonPatcher\DungeonPatcher\config\ArtistInfo.xml";
 		
+		const string ArtistInfoPath =
+			@"config\ArtistInfo.xml";
 
+
+		if (!File.Exists(ArtistInfoPath)) {
+			log.Info($"ArtistInfoFile doesnt Exists in Path {ArtistInfoPath}");
+			return;
+		} 
+		
 		
 
 
 		XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-		var reader = XmlReader.Create(exampleXmlPath);
-		var xml = (Settings)serializer.Deserialize(reader)!;
 
 
 		Settings newSettings = new Settings {
