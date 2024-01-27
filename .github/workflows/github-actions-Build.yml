@@ -44,7 +44,11 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: true
         title: "Development Build"
-        files: DungeonPatcher\bin\Release\net7.0\win-x64\publish\
+        files: |
+          DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe
+          DungeonPatcher\bin\Release\net7.0\win-x64\publish\config\ArtistInfo.xml
+          DungeonPatcher\bin\Release\net7.0\win-x64\publish\config\Nlog.Config
+          
 
     # - name: Upload build artifacts
     #   uses: actions/upload-artifact@v3
