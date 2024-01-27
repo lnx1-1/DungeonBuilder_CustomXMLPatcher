@@ -36,6 +36,10 @@ class Program {
 			return;
 		}
 
+		if (args[0].Equals("--version")) {
+			log.Info(version);
+			return;
+		}
 		
 
 		var folderLoadPath = args[0];

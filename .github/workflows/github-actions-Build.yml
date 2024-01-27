@@ -34,10 +34,23 @@ jobs:
       run: dotnet publish -c Release   
       working-directory: DungeonPatcher 
 
+    - name: version
+      run: echo "::set-output name=version::$(.\DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe --version)"
+      id: version
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: Exe and Config
         path: DungeonPatcher\bin\Release\net7.0\win-x64\publish\
 
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        release_name: ${{ steps.version.outputs.version }}        
+        prerelease: true
+        title: "Development Build"
+        files: |
+            DungeonPatcher\bin\Release\net7.0\win-x64\publish\*
 
