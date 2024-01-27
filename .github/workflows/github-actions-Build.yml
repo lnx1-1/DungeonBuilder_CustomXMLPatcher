@@ -2,10 +2,11 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET Build
+run-name: ${{ github.actor }} is Building the Applications
 
 on:
   push:
-    branches: [ Master ]
+    branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
 
