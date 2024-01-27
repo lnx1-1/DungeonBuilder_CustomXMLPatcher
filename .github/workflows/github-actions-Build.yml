@@ -39,7 +39,10 @@ jobs:
       id: version
 
     - name: zip
-      run: zip -r win64.zip DungeonPatcher/bin/Release/net7.0/win-x64/publish/*
+      run: |
+        cd DungeonPatcher/bin/Release/net7.0/win-x64/publish/
+        zip -r win64.zip *
+        cd -      
     
     - uses: "marvinpinto/action-automatic-releases@latest"        
       with:
@@ -47,7 +50,7 @@ jobs:
         automatic_release_tag: "latest"
         prerelease: true
         title: "Development Build"
-        files: ./win64.zip
+        files: ./DungeonPatcher/bin/Release/net7.0/win-x64/publish/win64.zip
           
 
     # - name: Upload build artifacts
