@@ -38,17 +38,17 @@ jobs:
       run: echo "{version}={.\DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe --version} >> $GITHUB_OUTPUT"
       id: version
 
+    - name: zip
+      run: zip -r win64.zip DungeonPatcher\bin\Release\net7.0\win-x64\publish\*
+    
     - uses: "marvinpinto/action-automatic-releases@latest"        
       with:
         repo_token: "${{ secrets.ACCESS }}"
         automatic_release_tag: "latest"
         prerelease: true
         title: "Development Build"
-        files: |
-          DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe
-          DungeonPatcher\bin\Release\net7.0\win-x64\publish\config\ArtistInfo.xml
-          DungeonPatcher\bin\Release\net7.0\win-x64\publish\config\Nlog.Config
-          DungeonPatcher\bin\Release\net7.0\win-x64\publish\
+        files: ./win64.zip
+          
 
     # - name: Upload build artifacts
     #   uses: actions/upload-artifact@v3
