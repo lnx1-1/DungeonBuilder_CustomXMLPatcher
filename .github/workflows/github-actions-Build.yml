@@ -20,24 +20,20 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
-
-    - name: navigate to Subdir
-      run: cd DungeonPatcher    
+        dotnet-version: 7.0.x     
 
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: DungeonPatcher
 
     - name: Build
       run: dotnet build --no-restore
+      working-directory: DungeonPatcher
 
     - name: Publish
-      run: dotnet publish -c Release
-    
+      run: dotnet publish -c Release   
+      working-directory: DungeonPatcher 
 
-    - name: nav back
-      run: cd ..
-      
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
