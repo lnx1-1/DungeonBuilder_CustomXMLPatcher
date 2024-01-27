@@ -11,7 +11,7 @@ using DungeonPatcher.XML_Settings;
 using NLog;
 
 class Program {
-	private static string version = "0.1";
+	private static string version = "v0.1";
 	static Logger log = LogManager.GetLogger(typeof(Program).ToString());
 
 
