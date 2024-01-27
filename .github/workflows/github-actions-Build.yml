@@ -35,14 +35,14 @@ jobs:
       working-directory: DungeonPatcher 
 
     - name: version
-      run: echo "::set-output name=version::$(.\DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe --version)"
+      run: echo "{version}={.\DungeonPatcher\bin\Release\net7.0\win-x64\publish\DungeonPatcher.exe --version} >> $GITHUB_OUTPUT"
       id: version
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: Exe and Config
-        path: DungeonPatcher\bin\Release\net7.0\win-x64\publish\
+    # - name: Upload build artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: automaticBuild_${{ steps.version.outputs.version }}  
+    #     path: DungeonPatcher\bin\Release\net7.0\win-x64\publish\
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -50,7 +50,6 @@ jobs:
         automatic_release_tag: "latest"
         release_name: ${{ steps.version.outputs.version }}        
         prerelease: true
-        title: "Development Build"
-        files: |
-            DungeonPatcher\bin\Release\net7.0\win-x64\publish\*
+        title: "automaticBuild_${{ steps.version.outputs.version }}"
+        files:  DungeonPatcher\bin\Release\net7.0\win-x64\publish\*
 
